@@ -65,7 +65,7 @@ header{
     width: auto;
     bottom: -2px;
     height: 3px;
-    background: #73ca46;
+    background: $green;
     transition: all 0.4s ease;
   }
 }
