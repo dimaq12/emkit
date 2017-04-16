@@ -58,11 +58,11 @@ export default{
 	padding-top: 20px;
 }
 .product{
-	width: 23.45%;
+	width: 24%;
 	height: 400px;
 	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
 	background: #BBC1D7;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 </style>

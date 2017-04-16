@@ -1,13 +1,16 @@
 <template lang='pug'>
 	main.main
 		.main-wrap
-			<categories-nav></categories-nav>
+			.top-items
+				<categories-nav></categories-nav>
+				<gallery></gallery>
 			<product></product>
 		
 </template>
 <script>
 import Categories from './Categories.vue'
 import Product from './Product.vue'
+import MainGallery from './MainGallery.vue'
 
 export default{
 	data: function(){
@@ -17,7 +20,8 @@ export default{
 	},
 	components: {
 		'categories-nav': Categories,
-		'product': Product
+		'product': Product,
+		'gallery': MainGallery
 	}
 }
 </script>
@@ -29,6 +33,11 @@ export default{
 	max-width: 1200px;
 	margin: auto;
 	height: 100%;
+}
+.top-items{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
 }
 	
 </style>

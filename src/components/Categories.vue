@@ -28,6 +28,18 @@ export default{
 			{
 					'name': 'Adapters for BreadBoard',
 					'subcategories': []
+			},
+			{
+					'name': 'QFN Adapters',
+					'subcategories': []
+			},
+			{
+					'name': 'QFP Adapters',
+					'subcategories': []
+			},
+			{
+					'name': 'SOT23 Adapter Boards',
+					'subcategories': []
 			}
 			]
 		}
@@ -38,7 +50,8 @@ export default{
 $green: #73ca46;
 
 .vertical-menu{
-	width: 25%;
+	width: 24%;
+	display: inline-block;
 }
 .categories-list{
 	list-style: none;
