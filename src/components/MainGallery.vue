@@ -1,18 +1,13 @@
 <template lang="pug">
-	.gallery
-		.slider
-			.slide(:class='{"slide-active": index == activeSlide}' v-for='(slide, index) in slides')
-				.slide-content
-					h1.slide-title {{ slide.title }}
-					h4.slide-text {{ slide.text }}
-					.slide-action
-						a Read more
-					figure.slide-img
-						img(v-bind='{ src: loadImage(slide.name), class: [`img-${slide.name}`]}')
-			nav.slider-nav
-				a.nav-point(:class='{"point-active": index == activeSlide}' v-for='(slide, index) in slides' @click='changeSlide(index)')
-			a.nav-arrow.arrow-prev(@click='changeSlide("prev")')
-			a.nav-arrow.arrow-next(@click='changeSlide("next")')
+	.slider
+		.slide(:class='{"slide-active": index == activeSlide}' v-for='(slide, index) in slides')
+			.slide-content
+				figure.slide-img
+					img(v-bind='{ src: loadImage(slide.name), class: [`img-${slide.name}`]}')
+		nav.slider-nav
+			a.nav-point(:class='{"point-active": index == activeSlide}' v-for='(slide, index) in slides' @click='changeSlide(index)')
+		a.nav-arrow.arrow-prev(@click='changeSlide("prev")')
+		a.nav-arrow.arrow-next(@click='changeSlide("next")')
 		
 			
 
@@ -67,20 +62,21 @@ $color-dark: #252525;
 $color-grey: #666;
 $color-green: #7BEFB2;
 $color-light: #fff;
+$green: #73ca46;
 
-.gallery{
-	display: inline-block;
-	width: 74.67%;
-	height: 324px;
-	background: #BBC1D7;
-}
+
 .slider {
   position: relative;
   overflow: hidden;
   height: 100%;
+  display: inline-block;
+	width: 74.67%;
+	height: 325px;
+	background: #BBC1D7;
 }
 .slide {
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
   height: 100%;
@@ -97,30 +93,24 @@ $color-light: #fff;
   z-index: 2;
 }
 .slide-content {
-  padding: 20px;
-  z-index: 100;
-  width: 45vw;
+	width: 100%;
 }
 .slide-img {
 	margin: 0;
+	height: 100%;
 }
 .img-main {
-  transform: translateY(-10%) scale(1.3);
 }
 .img-shop,
-.img-team {
-  transform: translateY(-2%) translateX(4%) scale(1.3);
-}
+
 .slide-title {
-	font-size: 8vh;
+	position: absolute;
 }
 .slide-text {
 	font-size: 4vh;
 }
 .slide-action {
 	a {
-		font-size: 3vh;
-		padding-right: 3rem;
 	}
 }
 .slider-nav {
@@ -159,13 +149,15 @@ $color-light: #fff;
 .nav-arrow {
   position: absolute;
   display: none;
-  width: 4rem;
-  height: 10vh;
+  width: 50px;
+  height: 50px;
   content: '';
-  background-color: $color-dark;
+  background-color: $green;
   opacity: 0.6;
   z-index: 101;
   cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
   &:hover {
     opacity: 1;
   }
@@ -174,20 +166,26 @@ $color-light: #fff;
   display: block;
 }
 .arrow-prev {
-  top: calc(50% - 10vh);
   left: 0;
   &::before {
     position: absolute;
     content: '';
-    top: calc(50% - 0.5rem);
-    left: calc(50% - 0.5rem);
     width: 1rem;
     height: 1rem;
-    transform: rotate(90deg) scale(2);
+
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    content: "\F105";
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    right: 8px;
+    color: #fff;
   }
 }
 .arrow-next {
-  top: calc(50% - 10vh);
   right: 0;
   &::before {
     position: absolute;
