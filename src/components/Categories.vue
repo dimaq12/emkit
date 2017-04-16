@@ -3,16 +3,33 @@
 		ul.categories-list
 			.categories-heading
 				span Categories
-			li.category-item(v-for='(category, index) in categories') 
-				a {{category}}
+			li.category-item(v-for='category in categories') 
+				a {{ category.name }}
+				ul.sub-menu(v-if='category.subcategories')
+					li.category-item(v-for='subcat in category.subcategories')
+						a {{ subcat }}
 		
 
 </template>
 <script>
+
 export default{
 	data: function(){
 		return {
-			'categories': ['Adapter Boards SO', 'Adapter Boards SSOP', 'Adapters for BreadBoard']
+			categories: [
+			{
+					'name': 'Adapter Boards SO',
+					'subcategories': ['Sub1', 'Sub2']
+			},
+			{
+					'name': 'Adapter Boards SSOP',
+					'subcategories': ['SSOP1', 'SSOP2']
+			},
+			{
+					'name': 'Adapters for BreadBoard',
+					'subcategories': []
+			}
+			]
 		}
 	}
 }
@@ -33,9 +50,14 @@ $green: #73ca46;
 		background: #fff;
 		font-size: 18px;
 		font-family: Lato, sans-serif;
+		position: relative;
 		&:hover{
 			background-color: $green;
 			cursor: pointer;
+		}
+		&:hover .sub-menu{
+			opacity: 1;
+			visibility: visible;
 		}
 		&:hover>a{
 			color: #fff;
@@ -71,6 +93,25 @@ $green: #73ca46;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
+}
+.sub-menu{
+	position: absolute;
+	min-width: 200px;
+	top: 0;
+	left: 100%;
+	background: #fff;
+	border: 1px solid #eaeaea;
+	border-radius: 0;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0);
+	margin: 0;
+	transition: all .45s ease-out 0s;
+	opacity: 0;
+	display: block;
+	visibility: hidden;
+	z-index: 999;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 	
 </style>
