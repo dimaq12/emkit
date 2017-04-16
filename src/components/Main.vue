@@ -2,10 +2,12 @@
 	main.main
 		.main-wrap
 			<categories-nav></categories-nav>
+			<product></product>
 		
 </template>
 <script>
 import Categories from './Categories.vue'
+import Product from './Product.vue'
 
 export default{
 	data: function(){
@@ -14,7 +16,8 @@ export default{
 		}
 	},
 	components: {
-		'categories-nav': Categories
+		'categories-nav': Categories,
+		'product': Product
 	}
 }
 </script>
