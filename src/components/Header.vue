@@ -25,6 +25,7 @@ header{
 	width: 100%;
 	height: 60px;
 	background-color: #fff;
+	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.22);
 	.logo{
 		display: flex;
 		align-items: center;
