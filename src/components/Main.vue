@@ -26,9 +26,6 @@ export default{
 }
 </script>
 <style>
-.main{
-	height: 100vh;
-}
 .main-wrap{
 	max-width: 1200px;
 	margin: auto;
