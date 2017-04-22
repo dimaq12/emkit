@@ -1,5 +1,5 @@
 <template lang='pug'>
-	header.header
+	header.header(v-bind:class="{fixed : scrolled, hiding: prepare}")
 		.header-wrap
 			a.logo
 				img(:src="image")
@@ -12,8 +12,24 @@
 export default{
 	data: function(){
 		return {
-			image: '/static/img/emkit_logo.png'
+			image: '/static/img/emkit_logo.png',
+			prepare: false,
+			scrolled: false
 		}
+	},
+	methods: {
+  		handleScroll () {
+  			this.prepare = window.scrollY < 100 && window.scrollY !== 0;
+    		this.scrolled = window.scrollY > 100;
+    		this.$forceUpdate()
+    		console.log('bla', this.scrolled);
+  		}
+	},
+	created () {
+	  window.addEventListener('scroll', this.handleScroll);
+	},
+	destroyed () {
+	  window.removeEventListener('scroll', this.handleScroll);
 	}
 }
 	
@@ -26,6 +42,20 @@ header{
 	height: 60px;
 	background-color: #fff;
 	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.22);
+	z-index: 10;
+	top: -60px;
+	transition: 0.3s ease-out;
+	&.fixed{
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+	&.hiding{
+		position: fixed;
+		top: -60px;
+		left: 0;
+		height: 0;
+	}
 	.logo{
 		display: flex;
 		align-items: center;
@@ -37,6 +67,7 @@ header{
 			height: 47px;
 		}
 	}
+
 }
 .main-nav{
 	display: flex;
