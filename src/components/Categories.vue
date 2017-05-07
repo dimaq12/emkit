@@ -4,10 +4,10 @@
 			.categories-heading
 				span Categories
 			li.category-item(v-for='category in categories') 
-				a {{ category.name }}
-				ul.sub-menu(v-if='category.subcategories')
-					li.category-item(v-for='subcat in category.subcategories')
-						a {{ subcat }}
+				a {{ category.title }}
+				ul.sub-menu(v-if='category.products')
+					li.category-item(v-for='product in category.products')
+						a {{ product.title }}
 		
 
 </template>
@@ -16,32 +16,19 @@
 export default{
 	data: function(){
 		return {
-			categories: [
-			{
-					'name': 'Adapter Boards SO',
-					'subcategories': ['Sub1', 'Sub2']
-			},
-			{
-					'name': 'Adapter Boards SSOP',
-					'subcategories': ['SSOP1', 'SSOP2']
-			},
-			{
-					'name': 'Adapters for BreadBoard',
-					'subcategories': []
-			},
-			{
-					'name': 'QFN Adapters',
-					'subcategories': []
-			},
-			{
-					'name': 'QFP Adapters',
-					'subcategories': []
-			},
-			{
-					'name': 'SOT23 Adapter Boards',
-					'subcategories': []
-			}
-			]
+			categories: this.$http.get('categories/?format=json')
+				.then(response => {
+					return response.json()
+				}, error => {
+					console.log(error);
+				})
+				.then(data => {
+					const resArray = [];
+					for (let key in data){
+						resArray.push(data[key]);
+					}
+					this.categories = resArray;
+				}) 
 		}
 	}
 }
@@ -108,6 +95,7 @@ $green: #73ca46;
 	}
 }
 .sub-menu{
+	width: 100%;
 	position: absolute;
 	min-width: 200px;
 	top: 0;
@@ -125,6 +113,12 @@ $green: #73ca46;
 	margin: 0;
 	padding: 0;
 	list-style: none;
+	& li{
+		padding: 0;
+	}
+	& li a{
+		padding: 0 20px;
+	}
 }
 	
 </style>

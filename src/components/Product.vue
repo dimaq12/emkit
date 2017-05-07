@@ -1,10 +1,10 @@
 <template lang='pug'>
 	.products-wrap
 		.product(v-for='product in products')
-			<h4>{{ product.name }}</h4>
+			<h4>{{ product.title }}</h4>
 			.img-wrap
-				<img v-bind:src='product.src'>
-			<span>{{product.desc}}</span>
+				<img v-bind:src='product.image'>
+			<span>{{product.description}}</span>
 			.details
 				<a href="">details</a>
 		
@@ -14,56 +14,70 @@
 export default{
 	data: function(){
 		return {
-			products: [
-			{
-					'name': 'Adapter1 ',
-					'title': 'Adapter1',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter2 ',
-					'title': 'Adapter2',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter3 ',
-					'title': 'Adapter3',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter4 ',
-					'title': 'Adapter4',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter5 ',
-					'title': 'Adapter5',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter6 ',
-					'title': 'Adapter6',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter7 ',
-					'title': 'Adapter7',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			},
-			{
-					'name': 'Adapter8 ',
-					'title': 'Adapter8',
-					'src':'../../static/img/qfn16.jpg',
-					'desc': 'Little Adapter for BZX-Chips with 48 pins'
-			}
-			]
+			products: this.$http.get('products/?format=json')
+				.then(response => {
+					return response.json()
+				}, error => {
+					console.log(error);
+				})
+				.then(data => {
+					console.log(data);
+					const resArray = [];
+					for (let key in data){
+						resArray.push(data[key]);
+					}
+					this.products = resArray;
+				}) 
+			// products: [
+			// {
+			// 		'name': 'Adapter1 ',
+			// 		'title': 'Adapter1',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter2 ',
+			// 		'title': 'Adapter2',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter3 ',
+			// 		'title': 'Adapter3',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter4 ',
+			// 		'title': 'Adapter4',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter5 ',
+			// 		'title': 'Adapter5',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter6 ',
+			// 		'title': 'Adapter6',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter7 ',
+			// 		'title': 'Adapter7',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// },
+			// {
+			// 		'name': 'Adapter8 ',
+			// 		'title': 'Adapter8',
+			// 		'src':'../../static/img/qfn16.jpg',
+			// 		'desc': 'Little Adapter for BZX-Chips with 48 pins'
+			// }
+			// ]
 		
 		}
 	}
