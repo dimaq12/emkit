@@ -4,9 +4,10 @@
 			a.logo
 				img(:src="image")
 			nav.main-nav
-				a.nav-link Home
-				a.nav-link About
-				a.nav-link Contact
+				router-link(class="nav-link" to="/" exact) Home
+				router-link(class="nav-link" to="/about") About
+				router-link(class="nav-link" to="/contact") Contact
+
 </template>
 <script>
 export default{
@@ -79,6 +80,7 @@ header{
 	font-size: 15px;
 	font-family: 'Lato', sans-serif;
 	text-transform: uppercase;
+	text-decoration: none;
   color: #90a4ae;
   font-weight: bold;
   padding: 0 15px;
@@ -88,7 +90,17 @@ header{
   	color: $green;
   	cursor: pointer;
   }
-  &:hover:before{
+  
+}
+.header-wrap{
+	display: flex;
+	justify-content: space-between;
+	max-width: 1200px;
+	margin: auto;
+	height: 100%;
+}
+.router-link-active{
+	&:before{
   	content: '';
     position: absolute;
     display: block;
@@ -100,12 +112,5 @@ header{
     background: $green;
     transition: all 0.4s ease;
   }
-}
-.header-wrap{
-	display: flex;
-	justify-content: space-between;
-	max-width: 1200px;
-	margin: auto;
-	height: 100%;
 }
 </style>

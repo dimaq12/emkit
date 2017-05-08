@@ -1,11 +1,10 @@
 <template lang='pug'>
-	main.main
-		.main-wrap
-			.top-items
-				<categories-nav></categories-nav>
-				<gallery></gallery>
-			<product></product>
-		
+	<div>
+		.top-items
+			<categories-nav></categories-nav>
+			<gallery></gallery>
+		<product></product>
+	</div>
 </template>
 <script>
 import Categories from './Categories.vue'
@@ -26,11 +25,7 @@ export default{
 }
 </script>
 <style>
-.main-wrap{
-	max-width: 1200px;
-	margin: auto;
-	height: 100%;
-}
+
 .top-items{
 	display: flex;
 	justify-content: space-between;

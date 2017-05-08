@@ -1,7 +1,11 @@
 <template>
   <div id="app">
   	<app-header></app-header>
-  	<app-main></app-main>
+  	<main class="main">
+  		<div class="main-wrap">
+  			<router-view></router-view>
+  		</div>
+  	</main>
   	<app-footer></app-footer>
   </div>
 </template>
@@ -26,6 +30,11 @@ export default {
 </script>
 
 <style lang="scss">
+.main-wrap{
+	max-width: 1200px;
+	margin: auto;
+	height: 100%;
+}
 body{
 	margin: 0;
 	padding: 0;
