@@ -6,6 +6,7 @@ import { routes } from './routes.js'
 
 Vue.use(VueResource);
 Vue.http.options.root = 'http://127.0.0.1:8000/api'
+// Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
 
 Vue.use(VueRouter);
 const router = new VueRouter({

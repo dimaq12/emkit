@@ -3,12 +3,12 @@
 		.top-items
 			<categories-nav></categories-nav>
 			<gallery></gallery>
-		<product></product>
+		<products></products>
 	</div>
 </template>
 <script>
 import Categories from './Categories.vue'
-import Product from './Product.vue'
+import Products from './Products.vue'
 import MainGallery from './MainGallery.vue'
 
 export default{
@@ -19,7 +19,7 @@ export default{
 	},
 	components: {
 		'categories-nav': Categories,
-		'product': Product,
+		'products': Products,
 		'gallery': MainGallery
 	}
 }
