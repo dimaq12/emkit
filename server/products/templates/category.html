@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+		<h3>{{ category.title }}</h3>
+		{% for product in category.products.all %}
+			{% include 'product-detail.html' %}
+		{% endfor %}
+{% endblock %}
